@@ -48,7 +48,7 @@ export default function AboutSection() {
         style={{
           display: 'grid',
           gridTemplateColumns: 'auto 1fr',
-          gap: '2rem',
+          gap: '1.5rem',
           alignItems: 'start',
         }}
       >
@@ -83,7 +83,7 @@ export default function AboutSection() {
             />
             <span
               className="font-pixel"
-              style={{ fontSize: '0.28rem', color: 'var(--green2)', letterSpacing: 0, lineHeight: 1 }}
+              style={{ fontSize: '0.5rem', color: 'var(--green2)', letterSpacing: 0, lineHeight: 1 }}
             >
               open to work
             </span>
@@ -126,7 +126,7 @@ export default function AboutSection() {
             <p
               className="font-pixel"
               style={{
-                fontSize: '0.38rem',
+                fontSize: '0.57rem',
                 color: 'var(--text3)',
                 marginBottom: '0.85rem',
                 letterSpacing: 0,
@@ -140,7 +140,7 @@ export default function AboutSection() {
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
-                gap: '1rem',
+                gap: '0.85rem',
               }}
             >
               {SKILLS.map(({ category, items }) => (
@@ -163,7 +163,7 @@ function SkillGroup({ category, items }: { category: string; items: string[] }) 
       style={{
         background: 'var(--bg3)',
         border: 'var(--border-thin)',
-        padding: '0.85rem',
+        padding: '0.8rem',
         display: 'flex',
         flexDirection: 'column',
         gap: '0.6rem',
@@ -173,7 +173,7 @@ function SkillGroup({ category, items }: { category: string; items: string[] }) 
       <p
         className="font-pixel"
         style={{
-          fontSize: '0.32rem',
+          fontSize: '0.57rem',
           color: 'var(--amber3)',
           letterSpacing: 0,
           lineHeight: 1,
@@ -185,7 +185,7 @@ function SkillGroup({ category, items }: { category: string; items: string[] }) 
       </p>
 
       {/* Tags */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
         {items.map((item) => (
           <span key={item} className="skill-tag">
             {item}

@@ -48,7 +48,7 @@ export default function Footer() {
           display: 'flex',
           alignItems: 'center',
           gap: '0.5rem',
-          fontSize: '0.28rem',
+          fontSize: '0.5rem',
           color: 'var(--text3)',
           letterSpacing: 0,
           lineHeight: 1,
@@ -57,48 +57,6 @@ export default function Footer() {
         <span>© {CURRENT_YEAR}</span>
         <span>Patrick Hollyer-Viggiani</span>
 
-        {/* Decorative divider */}
-        <span
-          aria-hidden="true"
-          style={{
-            width: '1px',
-            height: '0.6rem',
-            background: 'var(--wood)',
-            margin: '0 0.2rem',
-          }}
-        />
-
-        {/* Tech stack badge */}
-        <span
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.25rem',
-          }}
-        >
-          <span>built with</span>
-          <span
-            style={{
-              color: 'var(--blue3)',
-              border: '1px solid var(--blue2)',
-              padding: '0.1rem 0.25rem',
-              fontSize: '0.24rem',
-            }}
-          >
-            Next.js
-          </span>
-          <span>+</span>
-          <span
-            style={{
-              color: 'var(--blue3)',
-              border: '1px solid var(--blue2)',
-              padding: '0.1rem 0.25rem',
-              fontSize: '0.24rem',
-            }}
-          >
-            Tailwind
-          </span>
-        </span>
       </div>
 
       {/* ── Center: heart + motto (with easter egg) ─────────────── */}
@@ -137,7 +95,7 @@ export default function Footer() {
         <span
           className="font-pixel"
           style={{
-            fontSize: '0.28rem',
+            fontSize: '0.5rem',
             color: 'var(--text4)',
             letterSpacing: 0,
             lineHeight: 1,
@@ -186,7 +144,7 @@ export default function Footer() {
           rel="noopener noreferrer"
           className="font-pixel"
           style={{
-            fontSize: '0.28rem',
+            fontSize: '0.5rem',
             color: 'var(--text3)',
             textDecoration: 'none',
             transition: 'color 0.1s ease',
@@ -217,7 +175,7 @@ export default function Footer() {
           rel="noopener noreferrer"
           className="font-pixel"
           style={{
-            fontSize: '0.28rem',
+            fontSize: '0.5rem',
             color: 'var(--text3)',
             textDecoration: 'none',
             transition: 'color 0.1s ease',
@@ -246,7 +204,7 @@ export default function Footer() {
           href={FOOTER_LINKS.email}
           className="font-pixel"
           style={{
-            fontSize: '0.28rem',
+            fontSize: '0.5rem',
             color: 'var(--text3)',
             textDecoration: 'none',
             transition: 'color 0.1s ease',

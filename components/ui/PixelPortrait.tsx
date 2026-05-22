@@ -120,14 +120,14 @@ export default function PixelPortrait() {
         <p
           className="font-pixel"
           style={{
-            fontSize: '0.3rem',
+            fontSize: '0.5rem',
             color: 'var(--amber2)',
             letterSpacing: 0,
             lineHeight: 1,
             textAlign: 'center',
           }}
         >
-          Patrick Hollyer-Viggiani · cpga '26
+          Patrick
         </p>
       </div>
     </div>

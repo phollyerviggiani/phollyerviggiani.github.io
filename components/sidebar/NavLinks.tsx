@@ -68,7 +68,7 @@ export default function NavLinks() {
               background: isActive ? 'var(--wood)' : 'none',
               border: `2px solid ${isActive ? 'var(--amber)' : 'transparent'}`,
               color: isActive ? 'var(--amber)' : 'var(--text2)',
-              fontSize: '0.38rem',
+              fontSize: '0.5rem',
               padding: '0.5rem 0.6rem',
               cursor: 'pointer',
               textAlign: 'left',

@@ -26,7 +26,7 @@ export default function Bookshelf() {
       <p
         className="font-pixel"
         style={{
-          fontSize: '0.32rem',
+          fontSize: '0.5rem',
           color: 'var(--text3)',
           letterSpacing: 0,
           lineHeight: 1,

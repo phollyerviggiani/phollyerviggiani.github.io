@@ -33,7 +33,7 @@ export default function Sidebar() {
         <p
           className="font-pixel"
           style={{
-            fontSize: '0.45rem',
+            fontSize: '0.6rem',
             color: 'var(--amber)',
             lineHeight: 2,
             letterSpacing: 0,
@@ -44,7 +44,7 @@ export default function Sidebar() {
         <p
           className="font-pixel"
           style={{
-            fontSize: '0.45rem',
+            fontSize: '0.6rem',
             color: 'var(--text3)',
             lineHeight: 2,
             letterSpacing: 0,
@@ -97,7 +97,7 @@ function SidebarLabel({ label }: { label: string }) {
     <p
       className="font-pixel"
       style={{
-        fontSize: '0.3rem',
+        fontSize: '0.5rem',
         color: 'var(--text3)',
         letterSpacing: 0,
         lineHeight: 1,

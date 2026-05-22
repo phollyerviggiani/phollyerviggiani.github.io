@@ -206,8 +206,8 @@ a:hover {
 /* ─── Skill / tech tag (MADE LARGER) ────────────────────────────────────── */
 .skill-tag {
   font-family: var(--font-pixel);
-  font-size: 0.45rem;  /* Was 0.35rem */
-  padding: 0.45rem 0.7rem;  /* Was 0.35rem 0.55rem */
+  font-size: 0.5rem;  /* Was 0.35rem */
+  padding: 0.4rem 0.7rem;  /* Was 0.35rem 0.55rem */
   border: 1px solid var(--blue2);
   color: var(--blue3);
   background: rgba(91, 141, 217, 0.08);
