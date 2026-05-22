@@ -1,15 +1,8 @@
 'use client'
 
 import Bookshelf from '@/components/sections/project/Bookshelf'
-
-/* ── Template data ───────────────────────────────────────────────────────── */
-
-const PROJECTS_HEADER = {
-  title: 'projects',
-  subtitle: '// click a book to open it',
-}
-
-/* ── Component ───────────────────────────────────────────────────────────── */
+import StudyCat from '@/components/ui/StudyCat'
+import HangingPlant from '@/components/ui/HangingPlant'
 
 export default function ProjectsSection() {
   return (
@@ -20,40 +13,57 @@ export default function ProjectsSection() {
         background: 'var(--bg2)',
       }}
     >
-      {/* Section heading */}
       <h2 className="section-heading" style={{ marginBottom: '1.5rem' }}>
-        {PROJECTS_HEADER.title}
+        projects
       </h2>
 
-      {/* Ambient warm light glow behind bookshelf (optional cozy touch) */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'relative',
-          marginBottom: '1rem',
-        }}
-      >
-        {/* Soft glow behind the shelf area */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '-20px',
-            left: '10%',
-            right: '10%',
-            height: '120px',
-            background: 'radial-gradient(ellipse at center, rgba(245, 201, 122, 0.08) 0%, transparent 70%)',
-            pointerEvents: 'none',
-            zIndex: 0,
-          }}
-        />
-        
-        {/* The bookshelf itself */}
-        <div style={{ position: 'relative', zIndex: 1 }}>
+      {/* Bookshelf + Decorative elements side by side */}
+      <div style={{
+        display: 'flex',
+        gap: '2rem',
+        alignItems: 'flex-start',
+        flexWrap: 'wrap',
+      }}>
+        {/* Bookshelf - takes remaining space */}
+        <div style={{ flex: 1, minWidth: '300px' }}>
           <Bookshelf />
+        </div>
+
+        {/* Decorative right column */}
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1.5rem',
+          alignItems: 'center',
+          marginTop: '2rem',
+        }}>
+          {/* Hanging plant */}
+          <div style={{ opacity: 0.8 }}>
+            <HangingPlant />
+          </div>
+          
+          {/* Study cat */}
+          <div style={{ opacity: 0.7 }}>
+            <StudyCat />
+          </div>
+          
+          {/* Tiny framed picture or clock */}
+          <div style={{
+            width: '48px',
+            height: '48px',
+            border: '2px solid var(--wood2)',
+            background: 'var(--bg3)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <div style={{ fontSize: '20px' }}>🕰️</div>
+          </div>
         </div>
       </div>
 
-      {/* Optional: vintage bookshop sign / footer decoration */}
+      {/* Vintage bookshop sign */}
       <div
         aria-hidden="true"
         style={{
@@ -73,7 +83,7 @@ export default function ProjectsSection() {
         <p
           className="font-pixel"
           style={{
-            fontSize: '0.28rem',
+            fontSize: '0.5rem',
             color: 'var(--text4)',
             letterSpacing: 0,
           }}

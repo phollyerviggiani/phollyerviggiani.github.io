@@ -1,17 +1,19 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { PROJECTS, type Project } from '@/components/sections/project/projectData'
 
 /* ─────────────────────────────────────────────────────────────────────────
    Bookshelf
    ─ Renders a row of pixel-art books on a wooden shelf.
-   ─ Clicking a book selects it (lifts up) and opens the detail panel below.
-   ─ Clicking the same book again collapses the panel.
+   ─ Scales dynamically with the number of books.
+   ─ Project panel appears beside the books (right side) when a book is selected.
 ───────────────────────────────────────────────────────────────────────── */
 
 export default function Bookshelf() {
   const [activeId, setActiveId] = useState<string | null>(null)
+  const [shelfWidth, setShelfWidth] = useState<number | null>(null)
+  const booksRowRef = useRef<HTMLDivElement>(null)
 
   const activeProject = PROJECTS.find((p) => p.id === activeId) ?? null
 
@@ -19,8 +21,15 @@ export default function Bookshelf() {
     setActiveId((prev) => (prev === id ? null : id))
   }
 
+  // Measure the books row width to match the shelf plank
+  useEffect(() => {
+    if (booksRowRef.current) {
+      setShelfWidth(booksRowRef.current.offsetWidth)
+    }
+  }, [PROJECTS.length]) // Re-measure when books change
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', width: '100%' }}>
 
       {/* Hint label */}
       <p
@@ -35,68 +44,76 @@ export default function Bookshelf() {
         {'// click a book to open it'}
       </p>
 
-      {/* ── Shelf ──────────────────────────────────────────────── */}
-      <div>
-        {/* Books row */}
-        <div
-          style={{
-            display:        'flex',
-            alignItems:     'flex-end',
-            gap:            6,
-            padding:        '10px 14px 0',
-            background:     'var(--wood)',
-            borderTop:      '2px solid var(--wood3)',
-            borderLeft:     '2px solid var(--wood3)',
-            borderRight:    '2px solid var(--wood3)',
-            flexWrap:       'wrap',
-          }}
-        >
-          {PROJECTS.map((project) => (
-            <Book
-              key={project.id}
-              project={project}
-              isActive={activeId === project.id}
-              onClick={() => handleBookClick(project.id)}
-            />
-          ))}
+      {/* ── Main row: Bookshelf (left) + Project Panel (right) ───────────────── */}
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'row', 
+        alignItems: 'flex-start',
+        gap: '2rem',
+        flexWrap: 'wrap',
+      }}>
+        {/* Left side: Bookshelf */}
+        <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
+            {/* Books row */}
+            <div
+              ref={booksRowRef}
+              style={{
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'flex-start',
+                gap: 6,
+                padding: '10px 14px 0',
+                background: 'var(--wood)',
+                borderTop: '2px solid var(--wood3)',
+                borderLeft: '2px solid var(--wood3)',
+                borderRight: '2px solid var(--wood3)',
+                flexWrap: 'wrap',
+                width: 'fit-content',
+                minWidth: 'auto',
+              }}
+            >
+              {PROJECTS.map((project) => (
+                <Book
+                  key={project.id}
+                  project={project}
+                  isActive={activeId === project.id}
+                  onClick={() => handleBookClick(project.id)}
+                />
+              ))}
+            </div>
 
-          {/* Bookend — right side decorative block */}
-          <div
-            aria-hidden="true"
-            style={{
-              width:      16,
-              height:     56,
-              background: 'var(--wood3)',
-              border:     '1px solid var(--wood4)',
-              marginLeft: 'auto',
-              flexShrink: 0,
-            }}
-          />
+            {/* Shelf plank - now matches the exact width of books row */}
+            <div
+              style={{
+                height: 10,
+                background: 'var(--wood2)',
+                borderLeft: '2px solid var(--wood3)',
+                borderRight: '2px solid var(--wood3)',
+                borderBottom: '2px solid var(--wood4)',
+                width: shelfWidth ? `${shelfWidth}px` : 'fit-content',
+              }}
+            />
+            
+            {/* Shelf shadow */}
+            <div
+              aria-hidden="true"
+              style={{
+                height: 4,
+                background: 'rgba(0,0,0,0.25)',
+                width: shelfWidth ? `${shelfWidth}px` : 'fit-content',
+              }}
+            />
+          </div>
         </div>
 
-        {/* Shelf plank */}
-        <div
-          style={{
-            height:           10,
-            background:       'var(--wood2)',
-            borderLeft:       '2px solid var(--wood3)',
-            borderRight:      '2px solid var(--wood3)',
-            borderBottom:     '2px solid var(--wood4)',
-          }}
-        />
-        {/* Shelf shadow */}
-        <div
-          aria-hidden="true"
-          style={{
-            height:     4,
-            background: 'rgba(0,0,0,0.25)',
-          }}
-        />
+        {/* Right side: Project Panel (only shows when a book is selected) */}
+        {activeProject && (
+          <div style={{ flex: 1, minWidth: '280px', maxWidth: '500px' }}>
+            <ProjectPanel project={activeProject} />
+          </div>
+        )}
       </div>
-
-      {/* ── Project detail panel ───────────────────────────────── */}
-      <ProjectPanel project={activeProject} />
-
     </div>
   )
 }
@@ -107,14 +124,19 @@ export default function Bookshelf() {
    ─ Lifts on hover and when active. Active = slightly more lifted + border.
 ───────────────────────────────────────────────────────────────────────── */
 
-const BOOK_SIZES: { w: number; h: number }[] = [
-  { w: 26, h: 88 },
-  { w: 22, h: 76 },
-  { w: 30, h: 96 },
-  { w: 20, h: 70 },
-  { w: 28, h: 84 },
-  { w: 24, h: 78 },
-]
+// Dynamic sizing - will assign sizes in order, scaling with any number of books
+function getBookSize(index: number, totalBooks: number) {
+  const sizes = [
+    { w: 26, h: 133 },
+    { w: 24, h: 140 },
+    { w: 28, h: 144 },
+    { w: 20, h: 190 },
+    { w: 28, h: 84 },
+    { w: 24, h: 78 },
+  ]
+  
+  return sizes[index % sizes.length]
+}
 
 function Book({
   project,
@@ -125,7 +147,8 @@ function Book({
   isActive: boolean
   onClick:  () => void
 }) {
-  const size = BOOK_SIZES[PROJECTS.indexOf(project) % BOOK_SIZES.length]
+  const projectIndex = PROJECTS.findIndex(p => p.id === project.id)
+  const size = getBookSize(projectIndex, PROJECTS.length)
 
   return (
     <button
@@ -134,26 +157,17 @@ function Book({
       aria-pressed={isActive}
       aria-label={`Open project: ${project.title}`}
       style={{
-        /* Reset button styles */
         appearance:    'none',
         border:        isActive ? `2px solid var(--amber)` : '2px solid transparent',
         padding:       0,
         cursor:        'pointer',
         background:    'none',
-
-        /* Size */
         width:         size.w,
         height:        size.h,
         flexShrink:    0,
-
-        /* Lift on hover / active */
         transform:     isActive ? 'translateY(-12px)' : 'translateY(0)',
         transition:    'transform 0.15s ease, border-color 0.1s',
-
-        /* Pixel rendering */
         imageRendering: 'pixelated',
-
-        /* Layout for inner content */
         display:       'flex',
         flexDirection: 'column',
         overflow:      'hidden',
@@ -170,7 +184,6 @@ function Book({
         }
       }}
     >
-      {/* Book top highlight */}
       <div
         aria-hidden="true"
         style={{
@@ -180,7 +193,6 @@ function Book({
         }}
       />
 
-      {/* Spine — main body with vertical text */}
       <div
         style={{
           flex:            1,
@@ -192,7 +204,6 @@ function Book({
           position:        'relative',
         }}
       >
-        {/* Subtle texture stripes */}
         <div
           aria-hidden="true"
           style={{
@@ -202,29 +213,34 @@ function Book({
           }}
         />
 
-        {/* Vertical spine title */}
+        {/* Vertical spine title - with dedicated font */}
         <span
-          className="font-pixel"
           style={{
             writingMode:       'vertical-rl',
             textOrientation:   'mixed',
-            fontSize:          '0.28rem',
-            color:             'rgba(255,255,255,0.88)',
+            fontSize:          '0.7rem',
+            fontFamily:        'Silkscreen',
+            color:             '#ffffff',
+            textShadow:        `
+              0px 0px 4px rgba(0, 0, 0, 0.95),
+              -1px -1px 0 rgba(0, 0, 0, 0.8),
+              1px -1px 0 rgba(0, 0, 0, 0.8),
+              -1px  1px 0 rgba(0, 0, 0, 0.8),
+              1px  1px 0 rgba(0, 0, 0, 0.8)
+            `,
             letterSpacing:     0,
-            lineHeight:        1,
-            padding:           '4px 0',
+            lineHeight:        1.2,
+            padding:           '6px 0',
             position:          'relative',
             zIndex:            1,
-            /* Truncate if too long for the spine */
             overflow:          'hidden',
-            maxHeight:         size.h - 16,
+            maxHeight:         size.h - 12,
           }}
         >
           {project.spine}
         </span>
       </div>
 
-      {/* Book bottom — slightly darker */}
       <div
         aria-hidden="true"
         style={{
@@ -239,9 +255,7 @@ function Book({
 
 /* ─────────────────────────────────────────────────────────────────────────
    ProjectPanel
-   ─ Expands below the shelf when a book is active.
-   ─ Shows title, year, description, tags, highlights, and links.
-   ─ Animates in with a fade-up.
+   ─ Expands beside the shelf when a book is active.
 ───────────────────────────────────────────────────────────────────────── */
 
 function ProjectPanel({ project }: { project: Project | null }) {
@@ -249,7 +263,7 @@ function ProjectPanel({ project }: { project: Project | null }) {
 
   return (
     <div
-      key={project.id}  /* key forces remount → re-runs the animation */
+      key={project.id}
       className="anim-fade-up"
       style={{
         background:   'var(--bg3)',
@@ -258,9 +272,11 @@ function ProjectPanel({ project }: { project: Project | null }) {
         display:      'flex',
         flexDirection: 'column',
         gap:          '1rem',
+        height:       'fit-content',
+        maxHeight:    '400px',
+        overflowY:    'auto',
       }}
     >
-      {/* Header row: title + year */}
       <div
         style={{
           display:        'flex',
@@ -284,7 +300,7 @@ function ProjectPanel({ project }: { project: Project | null }) {
         <span
           className="font-pixel"
           style={{
-            fontSize:    '0.32rem',
+            fontSize:    '0.5rem',
             color:       'var(--text3)',
             letterSpacing: 0,
             lineHeight:  1,
@@ -294,19 +310,16 @@ function ProjectPanel({ project }: { project: Project | null }) {
         </span>
       </div>
 
-      {/* Description */}
       <p
         style={{
           fontSize:   '0.9rem',
           color:      'var(--text2)',
           lineHeight: 1.8,
-          maxWidth:   640,
         }}
       >
         {project.description}
       </p>
 
-      {/* Highlights */}
       <ul
         style={{
           display:       'flex',
@@ -350,7 +363,6 @@ function ProjectPanel({ project }: { project: Project | null }) {
         ))}
       </ul>
 
-      {/* Tags */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
         {project.tags.map((tag) => (
           <span key={tag} className="skill-tag">
@@ -359,7 +371,6 @@ function ProjectPanel({ project }: { project: Project | null }) {
         ))}
       </div>
 
-      {/* Links */}
       <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.25rem' }}>
         {project.github ? (
           <a
