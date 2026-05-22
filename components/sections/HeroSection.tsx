@@ -40,7 +40,7 @@ export default function HeroSection() {
           <p
             className="font-pixel anim-fade-up anim-delay-1"
             style={{
-              fontSize: '0.45rem',
+              fontSize: '0.5rem',
               color: 'var(--text3)',
               letterSpacing: 0,
               lineHeight: 1,

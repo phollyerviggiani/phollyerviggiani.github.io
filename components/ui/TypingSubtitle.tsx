@@ -45,7 +45,7 @@ export default function TypingSubtitle({
     <p
       className="font-pixel"
       style={{
-        fontSize: '0.42rem',
+        fontSize: '0.5rem',
         color: 'var(--blue3)',
         lineHeight: 2.2,
         letterSpacing: 0,

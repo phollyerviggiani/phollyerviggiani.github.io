@@ -1,8 +1,6 @@
 'use client'
-
 import Bookshelf from '@/components/sections/project/Bookshelf'
 import StudyCat from '@/components/ui/StudyCat'
-import HangingPlant from '@/components/ui/HangingPlant'
 
 export default function ProjectsSection() {
   return (
@@ -24,41 +22,23 @@ export default function ProjectsSection() {
         alignItems: 'flex-start',
         flexWrap: 'wrap',
       }}>
-        {/* Bookshelf - takes remaining space */}
-        <div style={{ flex: 1, minWidth: '300px' }}>
+        {/* Bookshelf — does not grow beyond its natural content width */}
+        <div style={{ flexShrink: 0 }}>
           <Bookshelf />
         </div>
 
-        {/* Decorative right column */}
+        {/* Decorative column — sits naturally right after the bookshelf */}
         <div style={{
           display: 'flex',
           flexDirection: 'column',
           gap: '1.5rem',
           alignItems: 'center',
+          justifyContent: 'center',
           marginTop: '2rem',
+          flexShrink: 0,
         }}>
-          {/* Hanging plant */}
-          <div style={{ opacity: 0.8 }}>
-            <HangingPlant />
-          </div>
-          
-          {/* Study cat */}
           <div style={{ opacity: 0.7 }}>
             <StudyCat />
-          </div>
-          
-          {/* Tiny framed picture or clock */}
-          <div style={{
-            width: '48px',
-            height: '48px',
-            border: '2px solid var(--wood2)',
-            background: 'var(--bg3)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-            <div style={{ fontSize: '20px' }}>🕰️</div>
           </div>
         </div>
       </div>
