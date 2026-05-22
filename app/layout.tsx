@@ -1,33 +1,51 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import type { Metadata } from 'next'
+import './globals.css'
+import Sidebar from '@/components/sidebar/Sidebar'
 
 export const metadata: Metadata = {
-  title: "Patrick Hollyer-Viggiani - Software Engineer",
-  description: "Portfolio of Patrick Hollyer-Viggiani - software engineer.",
-};
+  title: 'Patrick Hollyer-Viggiani · Software Engineer',
+  description:
+    'Portfolio of Patrick Hollyer-Viggiani — software engineer, builder of things.',
+  openGraph: {
+    title: 'Patrick Hollyer-Viggiani · Software Engineer',
+    description: 'CPGA Grad, software engineer, builder of things.',
+    type: 'website',
+  },
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en">
+      <body>
+        {/*
+          Two-column layout:
+            · Left  — fixed Sidebar (200px), never scrolls
+            · Right — main content area, scrollable
+        */}
+        <div
+          style={{
+            display: 'flex',
+            minHeight: '100vh',
+          }}
+        >
+          <Sidebar />
+
+          <main
+            id="main-content"
+            style={{
+              flex: 1,
+              minWidth: 0,           
+              overflowX: 'hidden',
+            }}
+          >
+            {children}
+          </main>
+        </div>
+      </body>
     </html>
-  );
+  )
 }

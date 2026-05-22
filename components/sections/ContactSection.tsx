@@ -1,0 +1,349 @@
+'use client'
+
+import { useState } from 'react'
+
+/* ── Template data ───────────────────────────────────────────────────────── */
+
+const CONTACT_INFO = {
+  email: 'hello@yourname.com',
+  github: 'https://github.com/yourusername',
+  linkedin: 'https://linkedin.com/in/yourusername',
+  resume: '/resume.pdf', // Path to your CV file in /public
+}
+
+const SOCIAL_LINKS = [
+  { platform: 'github', url: CONTACT_INFO.github, label: '[ github ]' },
+  { platform: 'linkedin', url: CONTACT_INFO.linkedin, label: '[ linkedin ]' },
+  { platform: 'resume', url: CONTACT_INFO.resume, label: '[ resume / cv ]' },
+]
+
+const NOTEPAD_TEXT = {
+  greeting: 'get in touch',
+  message: "I'm open to full-time roles and interesting side projects. Drop me a line!",
+}
+
+/* ── Component ───────────────────────────────────────────────────────────── */
+
+export default function ContactSection() {
+  const [toastVisible, setToastVisible] = useState(false)
+  const [toastMessage, setToastMessage] = useState('copied!')
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_INFO.email)
+      setToastMessage('copied!')
+      setToastVisible(true)
+      setTimeout(() => setToastVisible(false), 1500)
+    } catch {
+      setToastMessage('failed to copy')
+      setToastVisible(true)
+      setTimeout(() => setToastVisible(false), 1500)
+    }
+  }
+
+  return (
+    <section
+      id="contact"
+      style={{
+        padding: 'var(--section-pad)',
+        background: 'var(--bg2)',
+      }}
+    >
+      <h2 className="section-heading">contact</h2>
+
+      <div
+        className="anim-fade-up anim-delay-1"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          gap: '1.5rem',
+        }}
+      >
+        {/* ── Notepad ───────────────────────────────────────────── */}
+        <div style={{ position: 'relative' }}>
+          {/* Notepad container */}
+          <div
+            style={{
+              background: '#f5f0e4',
+              border: '2px solid #d4c8a8',
+              padding: '1.25rem 1.5rem 1.25rem 2.5rem',
+              position: 'relative',
+              color: '#2c1f14',
+              maxWidth: 480,
+              boxShadow: '4px 4px 0 rgba(0,0,0,0.1)',
+            }}
+          >
+            {/* Left binding holes */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                left: '8px',
+                top: '1rem',
+                bottom: '1rem',
+                width: '1px',
+                background: 'rgba(180, 150, 120, 0.4)',
+              }}
+            />
+            <div
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                left: '4px',
+                top: '1rem',
+                bottom: '1rem',
+                width: '1px',
+                background: 'rgba(180, 150, 120, 0.3)',
+              }}
+            />
+
+            {/* Notebook lines overlay */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                left: '2.5rem',
+                background: 'repeating-linear-gradient(180deg, transparent, transparent 23px, rgba(180, 150, 200, 0.2) 23px, rgba(180, 150, 200, 0.2) 24px)',
+                pointerEvents: 'none',
+              }}
+            />
+
+            {/* Header with tiny paperclip decoration */}
+            <div
+              style={{
+                position: 'relative',
+                marginBottom: '1rem',
+              }}
+            >
+              <h3
+                className="font-pixel"
+                style={{
+                  fontSize: '0.5rem',
+                  color: '#5c3a1e',
+                  letterSpacing: 0,
+                  display: 'inline-block',
+                  background: '#f5f0e4',
+                  paddingRight: '0.5rem',
+                }}
+              >
+                {NOTEPAD_TEXT.greeting}
+              </h3>
+              {/* Paperclip decoration */}
+              <span
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  right: 0,
+                  top: '-6px',
+                  fontSize: '0.7rem',
+                  opacity: 0.6,
+                }}
+              >
+                📎
+              </span>
+            </div>
+
+            {/* Message text */}
+            <p
+              style={{
+                fontSize: '0.85rem',
+                lineHeight: 1.8,
+                color: '#3d2b18',
+                marginBottom: '1rem',
+                position: 'relative',
+              }}
+            >
+              {NOTEPAD_TEXT.message}
+            </p>
+
+            {/* Email button with pixel styling */}
+            <button
+              onClick={copyEmail}
+              className="font-pixel"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                background: 'none',
+                border: 'none',
+                fontFamily: 'var(--font-pixel)',
+                fontSize: '0.4rem',
+                color: 'var(--blue2)',
+                cursor: 'pointer',
+                padding: '0.3rem 0',
+                borderBottom: '1px dashed var(--blue2)',
+                transition: 'all 0.1s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = 'var(--blue3)'
+                e.currentTarget.style.borderBottomColor = 'var(--blue3)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'var(--blue2)'
+                e.currentTarget.style.borderBottomColor = 'var(--blue2)'
+              }}
+            >
+              <span style={{ fontSize: '0.5rem' }}>✉</span>
+              {CONTACT_INFO.email}
+            </button>
+
+            {/* Handwritten-style scribble underline (decorative) */}
+            <svg
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                bottom: '1rem',
+                right: '1rem',
+                width: 40,
+                opacity: 0.3,
+              }}
+              viewBox="0 0 100 20"
+            >
+              <path
+                d="M5,15 Q20,5 35,15 T65,15 T95,10"
+                fill="none"
+                stroke="#8b6914"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+
+          {/* Toast notification */}
+          <div
+            id="copy-toast"
+            className="font-pixel"
+            style={{
+              position: 'absolute',
+              bottom: '-2rem',
+              left: '1rem',
+              background: 'var(--amber)',
+              color: 'var(--bg1)',
+              padding: '0.25rem 0.6rem',
+              fontSize: '0.3rem',
+              opacity: toastVisible ? 1 : 0,
+              transition: 'opacity 0.15s ease',
+              pointerEvents: 'none',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {toastMessage}
+          </div>
+        </div>
+
+        {/* ── Social Links Row ──────────────────────────────────── */}
+        <div
+          className="anim-fade-up anim-delay-2"
+          style={{
+            display: 'flex',
+            gap: '0.75rem',
+            flexWrap: 'wrap',
+            marginTop: '0.5rem',
+          }}
+        >
+          {SOCIAL_LINKS.map((link) => (
+            <a
+              key={link.platform}
+              href={link.url}
+              target={link.platform === 'resume' ? '_blank' : '_blank'}
+              rel="noopener noreferrer"
+              className="btn-pixel btn-pixel--wood"
+              style={{
+                textDecoration: 'none',
+                display: 'inline-block',
+              }}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+
+        {/* ── Decorative inkwell / quill (optional pixel art) ────── */}
+        <div
+          aria-hidden="true"
+          className="anim-fade-up anim-delay-3"
+          style={{
+            display: 'flex',
+            alignItems: 'flex-end',
+            gap: '0.25rem',
+            marginTop: '0.5rem',
+            opacity: 0.5,
+          }}
+        >
+          {/* Inkwell */}
+          <div
+            style={{
+              width: 20,
+              height: 16,
+              background: 'var(--wood3)',
+              border: '1px solid var(--wood)',
+              borderRadius: '0 0 2px 2px',
+              position: 'relative',
+            }}
+          >
+            <div
+              style={{
+                position: 'absolute',
+                top: -6,
+                left: 4,
+                width: 12,
+                height: 8,
+                background: 'var(--wood2)',
+                border: '1px solid var(--wood)',
+                borderRadius: '1px',
+              }}
+            />
+          </div>
+          {/* Quill */}
+          <div
+            style={{
+              width: 2,
+              height: 24,
+              background: 'var(--cream3)',
+              transform: 'rotate(-15deg)',
+              transformOrigin: 'bottom center',
+              position: 'relative',
+              left: -4,
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              marginLeft: 12,
+              marginBottom: 20,
+              width: 8,
+              height: 12,
+              background: 'var(--amber3)',
+              clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+              transform: 'rotate(-25deg)',
+            }}
+          />
+        </div>
+
+        {/* ── Small footer note ─────────────────────────────────── */}
+        <div
+          className="anim-fade-up anim-delay-4"
+          style={{
+            marginTop: '0.5rem',
+            paddingTop: '0.75rem',
+            borderTop: '1px solid var(--wood)',
+          }}
+        >
+          <p
+            className="font-pixel"
+            style={{
+              fontSize: '0.28rem',
+              color: 'var(--text4)',
+              letterSpacing: 0,
+              lineHeight: 1.5,
+            }}
+          >
+            {'/* responses usually within 48 hours */'}
+          </p>
+        </div>
+      </div>
+    </section>
+  )
+}

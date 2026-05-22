@@ -1,32 +1,358 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+
+/* ─── Design tokens ─────────────────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg:          #1a120a;
+  --bg2:         #231810;
+  --bg3:         #2e1f12;
+  --bg4:         #160e06;
+
+  /* Wood tones */
+  --wood:        #5c3a1e;
+  --wood2:       #7c4f2a;
+  --wood3:       #a0662e;
+  --wood4:       #3d2410;
+
+  /* Amber / candlelight */
+  --amber:       #f5c97a;
+  --amber2:      #e8a84a;
+  --amber3:      #d4873a;
+  --amber4:      #b86820;
+
+  /* Blue accents */
+  --blue:        #5b8dd9;
+  --blue2:       #3a6bb5;
+  --blue3:       #7aaee8;
+  --blue4:       #1a4a8a;
+
+  /* Cream / parchment */
+  --cream:       #f5ead8;
+  --cream2:      #e8d5b8;
+  --cream3:      #d4bc94;
+  --cream4:      #c0a070;
+
+  /* Text */
+  --text:        #f5ead8;
+  --text2:       #d4bc94;
+  --text3:       #a08060;
+  --text4:       #6a5040;
+
+  /* Accents */
+  --green:       #4a7c4a;
+  --green2:      #6aaa6a;
+  --red:         #c0392b;
+  --purple:      #8e44ad;
+
+  /* Typography */
+  --font-pixel:  'Press Start 2P', monospace;
+  --font-serif:  'Lora', Georgia, serif;
+
+  /* Spacing */
+  --sidebar-w:   200px;
+  --section-pad: 2.5rem;
+
+  /* Borders */
+  --border-wood: 3px solid var(--wood);
+  --border-thin: 1px solid var(--wood2);
+  --border-pixel: 2px solid var(--wood3);
+}
+
+/* ─── Reset & base ───────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 html {
   scroll-behavior: smooth;
-}
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  font-size: 16px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-serif);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  /* Subtle wood-grain noise texture via SVG data-URI */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%231a120a'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%23201508' opacity='0.4'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23120b04' opacity='0.3'/%3E%3C/svg%3E");
+}
+
+/* ─── Pixel image rendering ──────────────────────────────────────────────── */
+.pixel {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg4);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--wood2);
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--wood3);
+}
+
+/* ─── Typography scale ───────────────────────────────────────────────────── */
+.font-pixel { font-family: var(--font-pixel); }
+.font-serif  { font-family: var(--font-serif); }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-pixel);
+  line-height: 1.8;
+  letter-spacing: 0;
+}
+
+p {
+  font-family: var(--font-serif);
+  color: var(--text2);
+  line-height: 1.8;
+}
+
+a {
+  color: var(--blue3);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--amber);
+}
+
+/* ─── Section heading style ──────────────────────────────────────────────── */
+.section-heading {
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  color: var(--amber);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0;
+}
+.section-heading::before {
+  content: '§ ';
+  color: var(--amber3);
+}
+
+/* ─── Pixel button ───────────────────────────────────────────────────────── */
+.btn-pixel {
+  font-family: var(--font-pixel);
+  font-size: 0.45rem;
+  padding: 0.55rem 0.85rem;
+  border: 2px solid;
+  background: none;
+  cursor: pointer;
+  letter-spacing: 0;
+  line-height: 1;
+  transition: background 0.1s, color 0.1s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-pixel--amber {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+.btn-pixel--amber:hover {
+  background: var(--amber);
+  color: var(--bg);
+}
+
+.btn-pixel--blue {
+  border-color: var(--blue);
+  color: var(--blue3);
+}
+.btn-pixel--blue:hover {
+  background: var(--blue2);
+  color: var(--cream);
+}
+
+.btn-pixel--wood {
+  border-color: var(--wood2);
+  color: var(--cream2);
+}
+.btn-pixel--wood:hover {
+  background: var(--wood2);
+  color: var(--cream);
+}
+
+/* ─── Skill / tech tag ───────────────────────────────────────────────────── */
+.skill-tag {
+  font-family: var(--font-pixel);
+  font-size: 0.35rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--blue2);
+  color: var(--blue3);
+  background: rgba(91, 141, 217, 0.08);
+  line-height: 1;
+  display: inline-block;
+}
+
+/* ─── Fun-fact / blockquote ──────────────────────────────────────────────── */
+.fun-fact {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--amber);
+  background: rgba(245, 201, 122, 0.05);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text2);
+}
+
+/* ─── Section divider ────────────────────────────────────────────────────── */
+.section-divider {
+  border: none;
+  border-top: 2px solid var(--wood);
+  margin: 0;
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────────── */
+
+/* Candle flicker */
+@keyframes flicker {
+  0%, 100% { transform: scaleX(1) scaleY(1);    opacity: 1; }
+  25%       { transform: scaleX(0.85) scaleY(1.1); opacity: 0.95; }
+  50%       { transform: scaleX(1.05) scaleY(0.95); opacity: 1; }
+  75%       { transform: scaleX(0.9) scaleY(1.05); opacity: 0.9; }
+}
+
+/* Rain drop fall */
+@keyframes rain-fall {
+  from { transform: translateY(-12px); opacity: 0.7; }
+  to   { transform: translateY(80px);  opacity: 0; }
+}
+
+/* Cursor blink on monitor */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Fade up — used for section entry */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Book hover lift — handled in Tailwind, declared here for reference */
+@keyframes book-lift {
+  to { transform: translateY(-8px); }
+}
+
+/* Typing cursor blink (hero sub) */
+@keyframes type-blink {
+  0%, 100% { border-color: var(--blue3); }
+  50%       { border-color: transparent; }
+}
+
+/* Scroll hint bounce arrow */
+@keyframes bounce {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  50%       { transform: rotate(45deg) translateY(4px); }
+}
+
+/* Open-to-work pulsing green dot */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.75); }
+}
+
+/* Page load stagger fade */
+.anim-fade-up {
+  animation: fade-up 0.5s ease both;
+}
+.anim-delay-1 { animation-delay: 0.1s; }
+.anim-delay-2 { animation-delay: 0.2s; }
+.anim-delay-3 { animation-delay: 0.3s; }
+.anim-delay-4 { animation-delay: 0.4s; }
+.anim-delay-5 { animation-delay: 0.5s; }
+
+/* ─── Notepad (Contact) ──────────────────────────────────────────────────── */
+.notepad {
+  background: #f5f0e4;
+  border: 2px solid #d4c8a8;
+  padding: 1.25rem 1.25rem 1.25rem 2.75rem;
+  position: relative;
+  color: #2c1f14;
+  max-width: 420px;
+}
+
+/* Red margin line */
+.notepad::before {
+  content: '';
+  position: absolute;
+  left: 2rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(180, 100, 100, 0.35);
+}
+
+/* Ruled lines */
+.notepad::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: 2.75rem;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent,
+    transparent 1.5rem,
+    rgba(180, 150, 200, 0.2) 1.5rem,
+    rgba(180, 150, 200, 0.2) calc(1.5rem + 1px)
+  );
+  pointer-events: none;
+}
+
+.notepad h3 {
+  font-family: var(--font-pixel);
+  font-size: 0.45rem;
+  color: #5c3a1e;
+  margin-bottom: 0.85rem;
+}
+.notepad p {
+  font-size: 0.8rem;
+  line-height: 1.9;
+  color: #3d2b18;
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Selection colour ───────────────────────────────────────────────────── */
+::selection {
+  background: var(--amber3);
+  color: var(--bg);
+}
+
+/* ─── Focus ring ─────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-80px);
+  }
 }
