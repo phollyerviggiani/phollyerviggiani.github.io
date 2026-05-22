@@ -3,21 +3,6 @@
 import PixelDesk      from '@/components/ui/PixelDesk'
 import TypingSubtitle from '@/components/ui/TypingSubtitle'
 
-/*
-  Layout (desktop):
-  ┌──────────────────────────────────────────────────┐
-  │  [Pixel desk scene — right-aligned]              │
-  │                                                  │
-  │  Your Name              ← h1, pixel font, amber  │
-  │  software engineer · … ← typing animation, blue  │
-  │  Bio blurb             ← serif, muted            │
-  │                                                  │
-  │  [ view projects ]  [ download cv ]             │
-  └──────────────────────────────────────────────────┘
-
-  On mobile the desk scene stacks above the text.
-*/
-
 export default function HeroSection() {
   return (
     <section
@@ -29,7 +14,6 @@ export default function HeroSection() {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        gap: '2rem',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -37,105 +21,117 @@ export default function HeroSection() {
       {/* Ambient wood-panel texture lines */}
       <WoodGrainLines />
 
-      {/* Desk scene — floats top-right on large screens */}
+      {/* Main content container - using grid for better positioning */}
       <div
         style={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          marginBottom: '-1rem',
+          display: 'grid',
+          gridTemplateColumns: '1fr auto',
+          gap: '2rem',
+          alignItems: 'center',
+          maxWidth: '1200px',
+          width: '100%',
+          margin: '0 auto',
         }}
-        className="anim-fade-up anim-delay-1"
-        aria-hidden="true"
       >
-        <PixelDesk />
-      </div>
+        {/* Left side - Text content */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
 
-      {/* ── Text block ─────────────────────────────────────── */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-
-        {/* Eyebrow label */}
-        <p
-          className="font-pixel anim-fade-up anim-delay-1"
-          style={{
-            fontSize: '0.38rem',
-            color: 'var(--text3)',
-            letterSpacing: 0,
-            lineHeight: 1,
-          }}
-        >
-          {'> hello, world'}
-        </p>
-
-        {/* Main title */}
-        <h1
-          className="anim-fade-up anim-delay-2"
-          style={{
-            fontFamily: 'var(--font-pixel)',
-            fontSize: 'clamp(0.85rem, 2.5vw, 1.4rem)',
-            color: 'var(--amber)',
-            lineHeight: 1.8,
-            letterSpacing: 0,
-          }}
-        >
-          Your Name
-        </h1>
-
-        {/* Typing subtitle — client component */}
-        <div className="anim-fade-up anim-delay-3">
-          <TypingSubtitle
-            text="software engineer · cpga grad · builder of things"
-            startDelay={800}
-            speed={50}
-          />
-        </div>
-
-        {/* Bio description */}
-        <p
-          className="anim-fade-up anim-delay-4"
-          style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: '1rem',
-            color: 'var(--text2)',
-            lineHeight: 1.85,
-            maxWidth: 520,
-          }}
-        >
-          I write clean code, break things in dev, and ship features that
-          (mostly) work in prod. Recently graduated from University of Toronto & Durham College
-          with a CPGA degree an internship&apos;s worth of battle scars.
-          Currently looking for my next adventure.
-        </p>
-
-        {/* CTA buttons */}
-        <div
-          className="anim-fade-up anim-delay-5"
-          style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.5rem' }}
-        >
-          <a
-            href="#projects"
-            className="btn-pixel btn-pixel--amber"
-            onClick={(e) => {
-              e.preventDefault()
-              document
-                .getElementById('projects')
-                ?.scrollIntoView({ behavior: 'smooth' })
+          {/* Eyebrow label */}
+          <p
+            className="font-pixel anim-fade-up anim-delay-1"
+            style={{
+              fontSize: '0.45rem',
+              color: 'var(--text3)',
+              letterSpacing: 0,
+              lineHeight: 1,
             }}
           >
-            {'[ view projects ]'}
-          </a>
+            {'> hello, world'}
+          </p>
 
-          <a
-            href="/resume.pdf"
-            className="btn-pixel btn-pixel--blue"
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* Main title */}
+          <h1
+            className="anim-fade-up anim-delay-2"
+            style={{
+              fontFamily: 'var(--font-pixel)',
+              fontSize: 'clamp(1.2rem, 4vw, 2rem)',
+              color: 'var(--amber)',
+              lineHeight: 1.4,
+              letterSpacing: 0,
+            }}
           >
-            {'[ download cv ]'}
-          </a>
+            Patrick Hollyer-Viggiani
+          </h1>
+
+          {/* Typing subtitle */}
+          <div className="anim-fade-up anim-delay-3">
+            <TypingSubtitle
+              text="software engineer · cpga grad · builder of things"
+              startDelay={800}
+              speed={50}
+            />
+          </div>
+
+          {/* Bio description */}
+          <p
+            className="anim-fade-up anim-delay-4"
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
+              color: 'var(--text2)',
+              lineHeight: 1.7,
+              maxWidth: 520,
+            }}
+          >
+            I write code, break things in dev, and ship features that
+            (mostly) work in prod. Recently graduated from University of Toronto & Durham College
+            with a CPGA degree.
+            Currently looking for my next adventure.
+          </p>
+
+          {/* CTA buttons */}
+          <div
+            className="anim-fade-up anim-delay-5"
+            style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.5rem' }}
+          >
+            <a
+              href="#projects"
+              className="btn-pixel btn-pixel--amber"
+              onClick={(e) => {
+                e.preventDefault()
+                document
+                  .getElementById('projects')
+                  ?.scrollIntoView({ behavior: 'smooth' })
+              }}
+            >
+              {'[ view projects ]'}
+            </a>
+
+            <a
+              href="/Patrick_Resume.pdf"
+              className="btn-pixel btn-pixel--blue"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {'[ download cv ]'}
+            </a>
+          </div>
+
+          {/* Scroll hint */}
+          <ScrollHint />
         </div>
 
-        {/* Scroll hint */}
-        <ScrollHint />
+        {/* Right side - Pixel Desk (no extra spacing) */}
+        <div
+          className="anim-fade-up anim-delay-1"
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+          }}
+        >
+          <PixelDesk />
+        </div>
       </div>
     </section>
   )
@@ -143,10 +139,6 @@ export default function HeroSection() {
 
 /* ── Sub-components ──────────────────────────────────────────────────────── */
 
-/*
-  Subtle animated wood-grain lines behind the hero content.
-  Pure CSS, purely decorative — hidden from screen readers.
-*/
 function WoodGrainLines() {
   const lines = Array.from({ length: 6 }, (_, i) => i)
 
@@ -178,10 +170,6 @@ function WoodGrainLines() {
   )
 }
 
-/*
-  A small bouncing arrow hinting that the user can scroll down.
-  Fades out after 4 seconds via CSS animation.
-*/
 function ScrollHint() {
   return (
     <div
@@ -198,7 +186,7 @@ function ScrollHint() {
       <p
         className="font-pixel"
         style={{
-          fontSize: '0.32rem',
+          fontSize: '0.38rem',
           color: 'var(--text4)',
           letterSpacing: 0,
           lineHeight: 1,

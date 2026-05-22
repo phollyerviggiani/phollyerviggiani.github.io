@@ -3,19 +3,15 @@ import PixelPortrait from '@/components/ui/PixelPortrait'
 /* ── Template data ───────────────────────────────────────────────────────── */
 
 const BIO_PARAGRAPHS = [
-  `Recent CS grad from the University of Somewhere. I spent my internship
-  at Acme Corp building internal tooling that nobody asked for but everyone
-  ended up using. I like systems that are simple, readable, and a little
+  `UofT Alum and recent CPGA grad from Durham College. I spent my internship creating the backend for a cool clothing startup.
+  I like systems that are simple, readable, and a little
   bit clever.`,
-  `Before I wrote code professionally I spent a lot of time breaking things
-  at home — Raspberry Pi projects, bad game jam entries, websites nobody
-  visited. Turns out that's just called learning.`,
 ]
 
 const SKILLS: { category: string; items: string[] }[] = [
   {
     category: 'languages',
-    items: ['TypeScript', 'Python', 'SQL', 'Bash'],
+    items: ['TypeScript', 'JavaScript', 'Java', 'SQL', 'C#'],
   },
   {
     category: 'frontend',
@@ -23,16 +19,16 @@ const SKILLS: { category: string; items: string[] }[] = [
   },
   {
     category: 'backend',
-    items: ['Node.js', 'Express', 'PostgreSQL', 'REST APIs'],
+    items: ['Node.js + Express', 'Spring Boot', 'PostgreSQL', 'REST APIs'],
   },
   {
     category: 'tools',
-    items: ['Git', 'Docker', 'AWS (basics)', 'Linux'],
+    items: ['Git', 'Docker', 'AWS', 'Stripe', 'NocoDB'],
   },
 ]
 
 const FUN_FACT =
-  '"When I\'m not coding I\'m probably losing at chess, failing to finish Hollow Knight, or making coffee I don\'t need."'
+  '"When I\'m not coding I\'m probably losing at the gym, failing to a challenge run, or making coffee I don\'t need."'
 
 /* ── Component ───────────────────────────────────────────────────────────── */
 

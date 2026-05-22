@@ -7,9 +7,9 @@ import { useState, useEffect } from 'react'
 const CURRENT_YEAR = new Date().getFullYear()
 
 const FOOTER_LINKS = {
-  github: 'https://github.com/yourusername',
-  linkedin: 'https://linkedin.com/in/yourusername',
-  email: 'mailto:hello@yourname.com',
+  github: 'https://github.com/phollyerviggiani',
+  linkedin: 'https://linkedin.com/in/patrick-hollyer-viggiani',
+  email: 'pviggiani61@gmail.com',
 }
 
 const MOTTO = 'made with pixel love & too much coffee'
@@ -55,7 +55,7 @@ export default function Footer() {
         }}
       >
         <span>© {CURRENT_YEAR}</span>
-        <span>Your Name</span>
+        <span>Patrick Hollyer-Viggiani</span>
 
         {/* Decorative divider */}
         <span

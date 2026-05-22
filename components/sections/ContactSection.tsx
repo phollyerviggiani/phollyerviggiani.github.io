@@ -5,10 +5,10 @@ import { useState } from 'react'
 /* ── Template data ───────────────────────────────────────────────────────── */
 
 const CONTACT_INFO = {
-  email: 'hello@yourname.com',
-  github: 'https://github.com/yourusername',
-  linkedin: 'https://linkedin.com/in/yourusername',
-  resume: '/resume.pdf', // Path to your CV file in /public
+  email: 'pviggiani61@gmail.com',
+  github: 'https://github.com/phollyerviggiani',
+  linkedin: 'https://linkedin.com/in/patrick-hollyer-viggiani',
+  resume: '/Patrick_Resume.pdf', 
 }
 
 const SOCIAL_LINKS = [

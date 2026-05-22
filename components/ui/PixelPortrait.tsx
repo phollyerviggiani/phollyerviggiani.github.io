@@ -127,7 +127,7 @@ export default function PixelPortrait() {
             textAlign: 'center',
           }}
         >
-          your name · cs '24
+          Patrick Hollyer-Viggiani · cpga '26
         </p>
       </div>
     </div>

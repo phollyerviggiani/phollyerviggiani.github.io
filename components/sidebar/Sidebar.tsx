@@ -39,12 +39,12 @@ export default function Sidebar() {
             letterSpacing: 0,
           }}
         >
-          Your Name
+          Patrick Hollyer-Viggiani
         </p>
         <p
           className="font-pixel"
           style={{
-            fontSize: '0.35rem',
+            fontSize: '0.45rem',
             color: 'var(--text3)',
             lineHeight: 2,
             letterSpacing: 0,
