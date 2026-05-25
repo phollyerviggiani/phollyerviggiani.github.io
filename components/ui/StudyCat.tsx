@@ -52,16 +52,18 @@ export default function StudyCat() {
         {/* Head — resting sideways on body */}
         <rect x={3}  y={14} width={10} height={8}  fill="#c97a3a" rx={3} />
 
-        {/* Ears */}
-        <rect x={3}  y={11} width={4}  height={4}  fill="#c97a3a" rx={1} />
-        <rect x={9}  y={11} width={4}  height={4}  fill="#c97a3a" rx={1} />
+        {/* Ears — smaller and less pointy */}
+        {/* Left ear */}
+        <polygon points="3.7,15 5,11.5 6.3,15" fill="#c97a3a" />
+        {/* Right ear */}
+        <polygon points="9.7,15 11,11.5 12.3,15" fill="#c97a3a" />
         {/* Inner ears — pink */}
-        <rect x={4}  y={12} width={2}  height={2}  fill="#e8937a" />
-        <rect x={10} y={12} width={2}  height={2}  fill="#e8937a" />
+        <polygon points="4.5,15 5,12.5 5.5,15" fill="#e8937a" />
+        <polygon points="10.5,15 11,12.5 11.5,15" fill="#e8937a" />
 
         {/* Eyes closed — sleepy lines */}
-        <rect x={5}  y={17} width={3}  height={1}  fill="#5c3010" rx={0.5} />
-        <rect x={9}  y={17} width={3}  height={1}  fill="#5c3010" rx={0.5} />
+        <rect x={4.4}  y={17} width={3}  height={1}  fill="#5c3010" rx={0.5} />
+        <rect x={8.4} y={17} width={3}  height={1}  fill="#5c3010" rx={0.5} />
 
         {/* Nose */}
         <rect x={7}  y={19} width={2}  height={1}  fill="#e8937a" />
@@ -69,8 +71,8 @@ export default function StudyCat() {
         {/* Whiskers — light, visible against dark bg */}
         <rect x={1}  y={19} width={4}  height={1}  fill="#f5e8d0" opacity={0.8} />
         <rect x={1}  y={21} width={3}  height={1}  fill="#f5e8d0" opacity={0.6} />
-        <rect x={13} y={19} width={4}  height={1}  fill="#f5e8d0" opacity={0.8} />
-        <rect x={13} y={21} width={3}  height={1}  fill="#f5e8d0" opacity={0.6} />
+        <rect x={11.5} y={19} width={4}  height={1}  fill="#f5e8d0" opacity={0.8} />
+        <rect x={11.5} y={21} width={3}  height={1}  fill="#f5e8d0" opacity={0.6} />
 
         {/* Tail — swaying gently */}
         <g className="cat-tail">

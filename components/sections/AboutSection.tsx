@@ -3,9 +3,7 @@ import PixelPortrait from '@/components/ui/PixelPortrait'
 /* ── Template data ───────────────────────────────────────────────────────── */
 
 const BIO_PARAGRAPHS = [
-  `UofT Alum and recent CPGA grad from Durham College. I spent my internship creating the backend for a cool clothing startup.
-  I like systems that are simple, readable, and a little
-  bit clever.`,
+  `I'm a University of Toronto alumn and recent Computer Programming & Analysis graduate from Durham College. During my internship, I helped develop backend functionality for a production e-commerce application, working with databases, payment processing, automated emails, and third-party integrations. I enjoy building reliable systems and creating solutions that are both practical and maintainable.`,
 ]
 
 const SKILLS: { category: string; items: string[] }[] = [
@@ -28,7 +26,7 @@ const SKILLS: { category: string; items: string[] }[] = [
 ]
 
 const FUN_FACT =
-  '"When I\'m not coding I\'m probably losing at the gym, failing to a challenge run, or making coffee I don\'t need."'
+  '"When I\'m not coding I\'m probably at the gym, playing games too hard for me, or making coffee I don\'t need."'
 
 /* ── Component ───────────────────────────────────────────────────────────── */
 

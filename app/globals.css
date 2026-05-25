@@ -664,3 +664,119 @@ section {
   }
 }
 
+/* Main layout - no forced margin on desktop */
+.main-content {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Only add margin on desktop if sidebar is present */
+@media (min-width: 769px) {
+  body.has-sidebar .main-content {
+    margin-left: var(--sidebar-w);
+  }
+}
+
+/* Hero window responsive - only scale on mobile, not desktop */
+@media (max-width: 768px) {
+  .hero-window-wrapper {
+    transform: scale(0.7);
+    transform-origin: center;
+  }
+  
+  .hero-desk-wrapper {
+    transform: scale(0.8);
+    transform-origin: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-window-wrapper {
+    transform: scale(0.55);
+  }
+  
+  .hero-desk-wrapper {
+    transform: scale(0.7);
+  }
+}
+
+/* Project cards - responsive text */
+.project-description {
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .project-description {
+    font-size: 0.85rem;
+  }
+}
+
+/* Project section responsive fixes */
+.project-container {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.project-card {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.project-description {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  line-height: 1.6;
+}
+
+/* Expanded project content */
+.project-expanded-content {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Responsive project grid */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+  
+  .project-card {
+    width: 100%;
+    min-width: 0; /* Prevents overflow */
+  }
+  
+  .project-description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  
+  /* Make sure expanded content doesn't overflow */
+  .project-expanded-content p,
+  .project-expanded-content ul,
+  .project-expanded-content li {
+    font-size: 0.8rem;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-description {
+    font-size: 0.8rem;
+  }
+  
+  .project-expanded-content p,
+  .project-expanded-content ul,
+  .project-expanded-content li {
+    font-size: 0.75rem;
+  }
+}
+

@@ -83,10 +83,7 @@ export default function HeroSection() {
               maxWidth: 520,
             }}
           >
-            I write code, break things in dev, and ship features that
-            (mostly) work in prod. Recently graduated from University of Toronto & Durham College
-            with a CPGA degree.
-            Currently looking for my next adventure.
+            Recent Computer Programming & Analysis graduate with experience developing full-stack applications, backend systems, and e-commerce solutions. Passionate about clean code, continuous learning, and building software that solves real problems. Currently seeking new opportunities in software development.
           </p>
 
           {/* CTA buttons */}
@@ -108,7 +105,7 @@ export default function HeroSection() {
             </a>
 
             <a
-              href="/Patrick_Resume.pdf"
+              href="/PatrickHollyerViggiani_Resume.pdf"
               className="btn-pixel btn-pixel--blue"
               target="_blank"
               rel="noopener noreferrer"
@@ -133,12 +130,21 @@ export default function HeroSection() {
           }}
         >
           {/* Background window */}
-          <div style={{ position: 'absolute', right: 0, bottom: 0 }}>
+          <div className="hero-window-wrapper" style={{
+            position: 'absolute',
+            right: 0,
+            bottom: 0,
+          }}>
             <HeroWindow />
           </div>
 
           {/* Desk on top */}
-          <div style={{ position: 'relative', zIndex: 2, marginBottom: '-20px', marginRight: '-10px' }}>
+          <div className="hero-desk-wrapper" style={{
+            position: 'relative',
+            zIndex: 2,
+            marginBottom: '-20px',
+            marginRight: '-10px',
+          }}>
             <PixelDesk />
           </div>
         </div>
