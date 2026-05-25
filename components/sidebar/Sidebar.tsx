@@ -1,5 +1,5 @@
 import NavLinks from '@/components/sidebar/NavLinks'
-import RainWindow from '@/components/sidebar/RainWindow'
+import RainWindow from '@/components/sidebar/SnowWindow'
 import CandleFlicker from '@/components/sidebar/CandleFlicker'
 import PixelAvatar from '@/components/ui/PixelAvatar'
 

@@ -60,7 +60,7 @@ export default function PixelDesk() {
         <animate
           attributeName="opacity"
           values="0.9;0;0.9"
-          dur="1s"
+          dur="5s"
           repeatCount="indefinite"
         />
       </rect>
@@ -104,10 +104,10 @@ export default function PixelDesk() {
       <rect x={51} y={29} width={2}  height={4}  fill="none"   stroke="#d4bc94" strokeWidth={1} />
       {/* Steam */}
       <rect x={46} y={26} width={1}  height={2}  fill="#f5ead8" opacity={0.3}>
-        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="5s" repeatCount="indefinite" />
       </rect>
       <rect x={48} y={25} width={1}  height={3}  fill="#f5ead8" opacity={0.2}>
-        <animate attributeName="opacity" values="0.2;0.5;0.2" dur="2.4s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.2;0.5;0.2" dur="5s" repeatCount="indefinite" />
       </rect>
       {/* Coffee label detail */}
       <rect x={45} y={30} width={5}  height={2}  fill="#c08040" opacity={0.3} />

@@ -50,9 +50,11 @@
   --font-pixel: 'Press Start 2P', monospace;
   --font-serif: 'Lora', Georgia, serif;
 
-  /* Spacing */
+  /* Spacing - responsive */
   --sidebar-w: 200px;
-  --section-pad: 2.5rem;
+  --sidebar-w-mobile: 60px;
+  --section-pad: 2rem;
+  --section-pad-mobile: 1.25rem;
 
   /* Borders */
   --border-wood: 3px solid var(--wood);
@@ -74,7 +76,19 @@ html {
   font-size: 16px;
 }
 
-/* Optional: Increase base font size for better readability */
+/* Responsive base font size */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
 body {
   font-family: var(--font-serif);
   background-color: var(--bg);
@@ -82,9 +96,45 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
-  font-size: 18px; 
+  font-size: 1rem;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%231a120a'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%23201508' opacity='0.4'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23120b04' opacity='0.3'/%3E%3C/svg%3E");
 }
+
+/* ─── Layout - Sidebar (Mobile First) ───────────────────────────────────── */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--sidebar-w-mobile);
+  height: 100vh;
+  z-index: 50;
+  transition: width 0.2s ease;
+}
+
+/* Main content with sidebar offset */
+.main-content {
+  margin-left: var(--sidebar-w-mobile);
+  transition: margin-left 0.2s ease;
+}
+
+/* Desktop sidebar */
+@media (min-width: 769px) {
+  .sidebar {
+    width: var(--sidebar-w);
+  }
+  
+  .main-content {
+    margin-left: var(--sidebar-w);
+  }
+}
+
+/* When sidebar is collapsed on mobile (optional) */
+@media (max-width: 768px) {
+  .sidebar.expanded {
+    width: var(--sidebar-w);
+  }
+}
+
 /* ─── Pixel image rendering ──────────────────────────────────────────────── */
 .pixel {
   image-rendering: pixelated;
@@ -109,7 +159,7 @@ body {
   background: var(--wood3);
 }
 
-/* ─── Typography scale ───────────────────────────────────────────────────── */
+/* ─── Typography scale - responsive ──────────────────────────────────────── */
 .font-pixel {
   font-family: var(--font-pixel);
 }
@@ -123,15 +173,28 @@ h2,
 h3,
 h4 {
   font-family: var(--font-pixel);
-  line-height: 1.8;
+  line-height: 1.4;
   letter-spacing: 0;
+}
+
+/* Responsive heading sizes */
+h1 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+h2 {
+  font-size: clamp(1.25rem, 4vw, 2rem);
+}
+
+h3 {
+  font-size: clamp(1rem, 3vw, 1.5rem);
 }
 
 p {
   font-family: var(--font-serif);
   color: var(--text2);
   line-height: 1.8;
-  font-size: 1rem; 
+  font-size: 1rem;
 }
 
 a {
@@ -146,9 +209,9 @@ a:hover {
 /* ─── Section heading style ───────────────────────────────── */
 .section-heading {
   font-family: var(--font-pixel);
-  font-size: 0.85rem;
+  font-size: clamp(0.7rem, 3vw, 0.85rem);
   color: var(--amber);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   letter-spacing: 0;
 }
 
@@ -157,13 +220,22 @@ a:hover {
   color: var(--amber3);
 }
 
-/* ─── Pixel button ────────────────────────────────────────── */
+/* ─── Section padding - responsive ───────────────────────────────────────── */
+section {
+  padding: var(--section-pad-mobile);
+}
+
+@media (min-width: 768px) {
+  section {
+    padding: var(--section-pad);
+  }
+}
+
+/* ─── Pixel button - responsive ──────────────────────────────────────────── */
 .btn-pixel {
   font-family: var(--font-pixel);
-  font-size: 0.55rem;
-  /* Was 0.45rem */
-  padding: 0.65rem 1rem;
-  /* Was 0.55rem 0.85rem */
+  font-size: clamp(0.45rem, 2vw, 0.55rem);
+  padding: clamp(0.5rem, 2vw, 0.65rem) clamp(0.75rem, 3vw, 1rem);
   border: 2px solid;
   background: none;
   cursor: pointer;
@@ -173,6 +245,15 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .btn-pixel {
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
+  }
 }
 
 .btn-pixel--amber {
@@ -205,25 +286,33 @@ a:hover {
   color: var(--cream);
 }
 
-/* ─── Skill / tech tag (MADE LARGER) ────────────────────────────────────── */
+/* ─── Skill / tech tag - responsive ──────────────────────────────────────── */
 .skill-tag {
   font-family: var(--font-pixel);
-  font-size: 0.5rem;  /* Was 0.35rem */
-  padding: 0.4rem 0.7rem;  /* Was 0.35rem 0.55rem */
+  font-size: clamp(0.4rem, 2vw, 0.5rem);
+  padding: clamp(0.3rem, 1.5vw, 0.4rem) clamp(0.5rem, 2.5vw, 0.7rem);
   border: 1px solid var(--blue2);
   color: var(--blue3);
   background: rgba(91, 141, 217, 0.08);
   line-height: 1;
   display: inline-block;
+  white-space: nowrap;
 }
 
-/* ─── Fun-fact / blockquote (MADE LARGER) ───────────────────────────────── */
+@media (max-width: 480px) {
+  .skill-tag {
+    white-space: normal;
+    font-size: 0.35rem;
+  }
+}
+
+/* ─── Fun-fact / blockquote - responsive ─────────────────────────────────── */
 .fun-fact {
   margin-top: 1rem;
-  padding: 0.85rem 1.25rem;  /* Was 0.75rem 1rem */
+  padding: clamp(0.75rem, 3vw, 0.85rem) clamp(1rem, 4vw, 1.25rem);
   border-left: 3px solid var(--amber);
   background: rgba(245, 201, 122, 0.05);
-  font-size: 1rem;  /* Was 0.85rem */
+  font-size: clamp(0.85rem, 3vw, 1rem);
   font-style: italic;
   color: var(--text2);
   line-height: 1.7;
@@ -375,21 +464,22 @@ a:hover {
   animation-delay: 0.5s;
 }
 
-/* ─── Notepad (Contact) - MADE LARGER ───────────────────────────────────── */
+/* ─── Notepad (Contact) - responsive ─────────────────────────────────────── */
 .notepad {
   background: #f5f0e4;
   border: 2px solid #d4c8a8;
-  padding: 1.5rem 1.5rem 1.5rem 3rem;  /* Increased padding */
+  padding: clamp(1rem, 4vw, 1.5rem) clamp(1rem, 4vw, 1.5rem) clamp(1rem, 4vw, 1.5rem) clamp(2rem, 6vw, 3rem);
   position: relative;
   color: #2c1f14;
-  max-width: 480px;  /* Was 420px */
+  max-width: min(480px, calc(100vw - 2rem));
+  width: 100%;
 }
 
 /* Red margin line */
 .notepad::before {
   content: '';
   position: absolute;
-  left: 2.2rem;  /* Adjusted */
+  left: clamp(1.5rem, 4vw, 2.2rem);
   top: 0;
   bottom: 0;
   width: 1px;
@@ -401,27 +491,104 @@ a:hover {
   content: '';
   position: absolute;
   inset: 0;
-  left: 3rem;  /* Adjusted */
+  left: clamp(2rem, 5vw, 3rem);
   background: repeating-linear-gradient(
     180deg,
     transparent,
-    transparent 1.8rem,  /* Was 1.5rem - spaced for larger text */
-    rgba(180, 150, 200, 0.2) 1.8rem,
-    rgba(180, 150, 200, 0.2) calc(1.8rem + 1px)
+    transparent 1.6rem,
+    rgba(180, 150, 200, 0.2) 1.6rem,
+    rgba(180, 150, 200, 0.2) calc(1.6rem + 1px)
   );
   pointer-events: none;
 }
 
 .notepad h3 {
   font-family: var(--font-pixel);
-  font-size: 0.6rem;  /* Was 0.45rem */
+  font-size: clamp(0.5rem, 2.5vw, 0.6rem);
   color: #5c3a1e;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
+
 .notepad p {
-  font-size: 0.95rem;  /* Was 0.8rem */
-  line-height: 1.9;
+  font-size: clamp(0.8rem, 3vw, 0.95rem);
+  line-height: 1.8;
   color: #3d2b18;
+}
+
+/* ─── Hero section responsive fixes ──────────────────────────────────────── */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+  }
+}
+
+/* Responsive desk scene */
+.desk-scene {
+  transform: scale(0.8);
+  transform-origin: center;
+}
+
+@media (min-width: 768px) {
+  .desk-scene {
+    transform: scale(1);
+  }
+}
+
+/* ─── Project cards responsive ───────────────────────────────────────────── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ─── Skills grid responsive ─────────────────────────────────────────────── */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ─── Contact section responsive ─────────────────────────────────────────── */
+.contact-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .contact-row {
+    flex-direction: row;
+    gap: 2rem;
+    align-items: flex-end;
+  }
+}
+
+/* ─── Social links responsive ────────────────────────────────────────────── */
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 /* ─── Reduced motion ─────────────────────────────────────────────────────── */
@@ -447,6 +614,7 @@ a:hover {
   outline-offset: 2px;
 }
 
+/* ─── Floating animation ─────────────────────────────────────────────────── */
 @keyframes floatUp {
   0% {
     opacity: 1;
@@ -458,3 +626,41 @@ a:hover {
     transform: translateX(-50%) translateY(-80px);
   }
 }
+
+/* ─── Utility classes for responsive spacing ────────────────────────────── */
+.hide-on-mobile {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hide-on-mobile {
+    display: block;
+  }
+  
+  .show-on-mobile {
+    display: none;
+  }
+}
+
+/* Mobile navigation toggle (add this to your sidebar component) */
+.mobile-menu-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 60;
+  background: var(--wood2);
+  border: none;
+  color: var(--cream);
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .mobile-menu-toggle {
+    display: none;
+  }
+}
+

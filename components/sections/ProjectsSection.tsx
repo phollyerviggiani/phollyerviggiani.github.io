@@ -1,8 +1,12 @@
 'use client'
+import { useState } from 'react'
 import Bookshelf from '@/components/sections/project/Bookshelf'
 import StudyCat from '@/components/ui/StudyCat'
+import AwakeCat from '@/components/ui/AwakeCat'
 
 export default function ProjectsSection() {
+  const [hasActiveBook, setHasActiveBook] = useState(false)
+
   return (
     <section
       id="projects"
@@ -15,19 +19,18 @@ export default function ProjectsSection() {
         projects
       </h2>
 
-      {/* Bookshelf + Decorative elements side by side */}
       <div style={{
         display: 'flex',
         gap: '2rem',
         alignItems: 'flex-start',
         flexWrap: 'wrap',
       }}>
-        {/* Bookshelf — does not grow beyond its natural content width */}
+        {/* Bookshelf — notifies us when a book is active */}
         <div style={{ flexShrink: 0 }}>
-          <Bookshelf />
+          <Bookshelf onActiveChange={setHasActiveBook} />
         </div>
 
-        {/* Decorative column — sits naturally right after the bookshelf */}
+        {/* Cat — swaps between sleeping and awake */}
         <div style={{
           display: 'flex',
           flexDirection: 'column',
@@ -36,9 +39,10 @@ export default function ProjectsSection() {
           justifyContent: 'center',
           marginTop: '2rem',
           flexShrink: 0,
+          transition: 'opacity 0.3s ease',
         }}>
           <div style={{ opacity: 0.7 }}>
-            <StudyCat />
+            {hasActiveBook ? <AwakeCat /> : <StudyCat />}
           </div>
         </div>
       </div>
@@ -46,27 +50,17 @@ export default function ProjectsSection() {
       {/* Vintage bookshop sign */}
       <div
         aria-hidden="true"
-        style={{
-          marginTop: '2rem',
-          textAlign: 'center',
-          opacity: 0.5,
-        }}
+        style={{ marginTop: '2rem', textAlign: 'center', opacity: 0.5 }}
       >
-        <div
-          style={{
-            width: '60px',
-            height: '2px',
-            background: 'var(--wood)',
-            margin: '0 auto 0.5rem auto',
-          }}
-        />
+        <div style={{
+          width: '60px',
+          height: '2px',
+          background: 'var(--wood)',
+          margin: '0 auto 0.5rem auto',
+        }} />
         <p
           className="font-pixel"
-          style={{
-            fontSize: '0.5rem',
-            color: 'var(--text4)',
-            letterSpacing: 0,
-          }}
+          style={{ fontSize: '0.5rem', color: 'var(--text4)', letterSpacing: 0 }}
         >
           {'✦ hand-bound collection ✦'}
         </p>

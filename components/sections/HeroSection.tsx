@@ -1,7 +1,8 @@
 "use client"
 
-import PixelDesk      from '@/components/ui/PixelDesk'
+import PixelDesk from '@/components/ui/PixelDesk'
 import TypingSubtitle from '@/components/ui/TypingSubtitle'
+import HeroWindow from '@/components/ui/HeroWindow'
 
 export default function HeroSection() {
   return (
@@ -26,16 +27,15 @@ export default function HeroSection() {
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr auto',
-          gap: '2rem',
+          gap: '1rem',
           alignItems: 'center',
-          maxWidth: '1200px',
+          maxWidth: '1100px',
           width: '100%',
           margin: '0 auto',
         }}
       >
         {/* Left side - Text content */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-
           {/* Eyebrow label */}
           <p
             className="font-pixel anim-fade-up anim-delay-1"
@@ -121,16 +121,26 @@ export default function HeroSection() {
           <ScrollHint />
         </div>
 
-        {/* Right side - Pixel Desk (no extra spacing) */}
+        {/* Right side - Window with Desk on top */}
         <div
           className="anim-fade-up anim-delay-1"
           style={{
+            position: 'relative',
             display: 'flex',
-            justifyContent: 'flex-end',
-            alignItems: 'center',
+            justifyContent: 'flex-start',
+            alignItems: 'flex-end',
+            marginLeft: '-1rem',
           }}
         >
-          <PixelDesk />
+          {/* Background window */}
+          <div style={{ position: 'absolute', right: 0, bottom: 0 }}>
+            <HeroWindow />
+          </div>
+
+          {/* Desk on top */}
+          <div style={{ position: 'relative', zIndex: 2, marginBottom: '-20px', marginRight: '-10px' }}>
+            <PixelDesk />
+          </div>
         </div>
       </div>
     </section>

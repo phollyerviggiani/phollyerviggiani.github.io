@@ -59,13 +59,14 @@ export default function ContactSection() {
           flexDirection: 'column',
           alignItems: 'flex-start',
           gap: '1.5rem',
+          marginTop: '0.5rem', // Reduced gap between heading and card
         }}
       >
         {/* ── Main row: notepad + desk scene ─────────────────────── */}
         <div style={{
           display: 'flex',
           gap: '2rem',
-          alignItems: 'flex-end',
+          alignItems: 'flex-start', // Changed from 'flex-end' to 'flex-start'
           flexWrap: 'wrap',
         }}>
 
@@ -235,7 +236,7 @@ export default function ContactSection() {
           </div>
 
           {/* Desk scene — right side */}
-          <div style={{ opacity: 0.85, marginLeft: "13rem", marginBottom: '0.5rem' }}>
+          <div style={{ opacity: 0.85, marginTop: '0.5rem', marginLeft: '13.4rem' }}>
             <ContactDeskScene />
           </div>
         </div>
