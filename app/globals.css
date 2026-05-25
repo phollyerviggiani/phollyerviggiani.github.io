@@ -4,59 +4,55 @@
 
 /* ─── Design tokens ─────────────────────────────────────────────────────── */
 :root {
-  /* Backgrounds */
-  --bg: #1a120a;
-  --bg2: #231810;
-  --bg3: #2e1f12;
-  --bg4: #160e06;
+  /* Backgrounds - warm but slightly cooler (less red, more grey/blue undertone) */
+  --bg: #1a1815;      /* Warm charcoal - was #1a120a */
+  --bg2: #201d18;     /* Slightly lighter - was #231810 */
+  --bg3: #2a2520;     /* Warm dark - was #2e1f12 */
+  --bg4: #141210;     /* Deepest - was #160e06 */
 
-  /* Wood tones */
-  --wood: #5c3a1e;
-  --wood2: #7c4f2a;
-  --wood3: #a0662e;
-  --wood4: #3d2410;
+  /* Wood tones - still warm but with less red/orange */
+  --wood: #5a4a38;    /* Muted warm brown - was #5c3a1e */
+  --wood2: #6e5a48;   /* Warmer mid - was #7c4f2a */
+  --wood3: #8a7058;   /* Lighter warm - was #a0662e */
+  --wood4: #3a3028;   /* Dark warm - was #3d2410 */
 
-  /* Amber / candlelight */
-  --amber: #f5c97a;
-  --amber2: #e8a84a;
-  --amber3: #d4873a;
-  --amber4: #b86820;
+  /* Amber / candlelight - keep this warm for coziness */
+  --amber: #f0d8a0;   /* Slightly softer - was #f5c97a */
+  --amber2: #e0c080;  /* Muted - was #e8a84a */
+  --amber3: #d0a868;  /* Dusty amber - was #d4873a */
+  --amber4: #b88850;  /* Dark amber - was #b86820 */
 
-  /* Blue accents */
-  --blue: #5b8dd9;
-  --blue2: #3a6bb5;
-  --blue3: #7aaee8;
-  --blue4: #1a4a8a;
+  /* Blue accents - subtle winter sky (keep it muted) */
+  --blue: #6a8ab8;    /* Muted winter blue - was #5b8dd9 */
+  --blue2: #5270a0;   /* Deeper muted - was #3a6bb5 */
+  --blue3: #8aa8c8;   /* Lighter muted - was #7aaee8 */
+  --blue4: #3a5080;   /* Dark muted - was #1a4a8a */
 
-  /* Cream / parchment */
-  --cream: #f5ead8;
-  --cream2: #e8d5b8;
-  --cream3: #d4bc94;
-  --cream4: #c0a070;
+  /* Cream / parchment - keep warm but slightly cooler */
+  --cream: #ece4d8;   /* Warm parchment - was #f5ead8 */
+  --cream2: #ddd0c0;  /* Slightly darker - was #e8d5b8 */
+  --cream3: #c8b8a8;  /* Warmer mid - was #d4bc94 */
+  --cream4: #b0a090;  /* Darker - was #c0a070 */
 
-  /* Text */
-  --text: #f5ead8;
-  --text2: #d4bc94;
-  --text3: #a08060;
-  --text4: #6a5040;
+  /* Text - warm and readable */
+  --text: #ece4d8;    /* Warm cream - was #f5ead8 */
+  --text2: #d0c0b0;   /* Soft warm - was #d4bc94 */
+  --text3: #a89888;   /* Muted - was #a08060 */
+  --text4: #887868;   /* Dark warm - was #6a5040 */
 
-  /* Accents */
-  --green: #4a7c4a;
-  --green2: #6aaa6a;
-  --red: #c0392b;
-  --purple: #8e44ad;
+  /* Accents - keep cozy */
+  --green: #5a7a5a;   /* Muted forest - was #4a7c4a */
+  --green2: #7a9a7a;  /* Lighter - was #6aaa6a */
+  --red: #b85a4a;     /* Muted warm red - was #c0392b */
+  --purple: #7a5a8a;  /* Muted - was #8e44ad */
 
-  /* Typography */
+  /* Rest remains the same */
   --font-pixel: 'Press Start 2P', monospace;
   --font-serif: 'Lora', Georgia, serif;
-
-  /* Spacing - responsive */
   --sidebar-w: 200px;
   --sidebar-w-mobile: 60px;
   --section-pad: 2rem;
   --section-pad-mobile: 1.25rem;
-
-  /* Borders */
   --border-wood: 3px solid var(--wood);
   --border-thin: 1px solid var(--wood2);
   --border-pixel: 2px solid var(--wood3);
