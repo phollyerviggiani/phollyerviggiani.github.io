@@ -178,7 +178,7 @@ function getBookSize(index: number, totalBooks: number) {
     { w: 26, h: 133 },
     { w: 24, h: 140 },
     { w: 28, h: 144 },
-    { w: 20, h: 190 },
+    { w: 26, h: 135 },
     { w: 28, h: 84 },
     { w: 24, h: 78 },
   ]

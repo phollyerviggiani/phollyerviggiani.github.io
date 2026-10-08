@@ -17,11 +17,11 @@ const SKILLS: { category: string; items: string[] }[] = [
   },
   {
     category: 'backend',
-    items: ['Node.js + Express', 'Spring Boot', 'PostgreSQL', 'REST APIs'],
+    items: ['Node.js', 'Fastify', 'Spring Boot', 'PostgreSQL', 'REST APIs'],
   },
   {
     category: 'tools',
-    items: ['Git', 'Docker', 'AWS', 'Stripe', 'NocoDB'],
+    items: ['Git', 'Docker', 'AWS', 'Stripe', 'Github Actions', 'LLM Tool Calling'],
   },
 ]
 
