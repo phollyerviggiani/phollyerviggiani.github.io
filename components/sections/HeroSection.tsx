@@ -105,7 +105,7 @@ export default function HeroSection() {
             </a>
 
             <a
-              href="/PatrickHollyerViggiani_Resume.pdf"
+              href="/Patrick_Hollyer_Viggiani_Resume.pdf"
               className="btn-pixel btn-pixel--blue"
               target="_blank"
               rel="noopener noreferrer"

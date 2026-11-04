@@ -9,7 +9,7 @@ const CONTACT_INFO = {
   email: 'pviggiani61@gmail.com',
   github: 'https://github.com/phollyerviggiani',
   linkedin: 'https://linkedin.com/in/patrick-hollyer-viggiani',
-  resume: '/PatrickHollyerViggiani_Resume.pdf',
+  resume: '/Patrick_Hollyer_Viggiani_Resume.pdf',
 }
 
 const SOCIAL_LINKS = [
