@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
       'A GitHub webhook service that reviews pull requests with an LLM and independently verifies every finding against the actual diff before posting it. Includes signature-verified webhooks, idempotent delivery handling, an eval harness for precision/recall, and a live dashboard.',
     tags: ['TypeScript', 'Fastify', 'Supabase', 'Docker', 'GitHub Actions', 'LLM Tool Calling'],
     github: 'https://github.com/phollyerviggiani/reviewsentinel',
-    demo: 'https://reviewsentinel-2kjv.onrender.com',
+    demo: null,
     highlights: [
       'Validation layer cross-checks every AI finding against the parsed diff',
       'HMAC-verified webhooks with idempotent delivery handling via a database unique constraint',
